@@ -16,10 +16,60 @@ header {
 
 /* Change the header title text color for better contrast */
 header h1 {
-  color: white; /* White text stands out on a dark background */
+  color: white;         /* White text stands out on a dark background */
+  font-size: 2.2em;     /* Slightly larger title text */
 }
 
 /* Change the header subheading text color for better contrast */
 header p {
   color: #e0e0e0; /* Light gray for readability on dark background */
+  font-size: 1.2em; /* Slightly larger subheading text */
+}
+
+/* Timeline cards layout using flexbox */
+section {
+  display: flex;              /* Use flexbox for layout */
+  flex-direction: row;        /* Arrange cards in a row (horizontal) */
+  flex-wrap: wrap;            /* Allow cards to wrap to next line if needed */
+  justify-content: center;    /* Center cards horizontally */
+  gap: 16px;                  /* Space between cards */
+  margin: 24px 0;             /* Space above and below the timeline */
+}
+
+/* Each card styling */
+section > div {
+  background: #f8f8f8;        /* Light background for cards */
+  border-radius: 8px;         /* Rounded corners */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07); /* Subtle shadow */
+  padding: 16px;              /* Space inside each card */
+  width: 200px;               /* Reduced width for cards */
+  box-sizing: border-box;     /* Include padding in width */
+  margin-bottom: 16px;        /* Space below cards for vertical stacking */
+}
+
+/* Make images inside cards fit nicely and stand out */
+section > div img {
+  width: 90%;                /* Image fills card width */
+  height: 160px;              /* Make image taller for emphasis */
+  object-fit: cover;          /* Crop image to fill area, keeping focus */
+  border-radius: 4px;         /* Slightly rounded image corners */
+  margin-bottom: 12px;        /* Space below image */
+}
+
+/* Center the h2 and h3 text in each card */
+section > div h2,
+section > div h3 {
+  text-align: center; /* Centers the heading text inside each card */
+}
+
+/* Responsive: Stack cards vertically on small screens */
+@media (max-width: 800px) {
+  section {
+    flex-direction: column;   /* Stack cards vertically */
+    align-items: center;      /* Center cards */
+  }
+  section > div {
+    width: 90%;               /* Cards take most of the screen width */
+    max-width: 350px;         /* But not too wide */
+  }
 }
