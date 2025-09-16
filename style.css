@@ -1,1 +1,25 @@
 /* Add your CSS here */
+
+/* Center the header image and set its size */
+header img {
+  display: block;           /* Makes the image take up its own line */
+  margin: 0 auto;           /* Centers the image horizontally */
+  width: 20%;               /* Sets the image width */
+  height: auto;             /* Keeps the image's aspect ratio */
+}
+
+/* Make the header background navy blue */
+header {
+  background-color: rgb(1, 1, 61); /* Sets the background color to navy blue */
+  text-align: center;              /* Centers all header text */
+}
+
+/* Change the header title text color for better contrast */
+header h1 {
+  color: white; /* White text stands out on a dark background */
+}
+
+/* Change the header subheading text color for better contrast */
+header p {
+  color: #e0e0e0; /* Light gray for readability on dark background */
+}
