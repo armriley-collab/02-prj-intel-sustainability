@@ -38,28 +38,88 @@ section {
 
 /* Each card styling */
 section > div {
-  background: #f8f8f8;        /* Light background for cards */
-  border-radius: 8px;         /* Rounded corners */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07); /* Subtle shadow */
-  padding: 16px;              /* Space inside each card */
-  width: 200px;               /* Reduced width for cards */
-  box-sizing: border-box;     /* Include padding in width */
-  margin-bottom: 16px;        /* Space below cards for vertical stacking */
+  background: none;             /* Remove card background */
+  border-radius: 8px;
+  box-shadow: none;             /* Remove card shadow */
+  padding: 0;                   /* Remove card padding */
+  width: 200px;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+  position: relative;           /* Needed for overlay positioning */
+  overflow: hidden;             /* Hide overflow for rounded corners */
+  transition: transform 0.2s;     /* Smooth scaling effect */
 }
 
 /* Make images inside cards fit nicely and stand out */
 section > div img {
-  width: 90%;                /* Image fills card width */
-  height: 160px;              /* Make image taller for emphasis */
-  object-fit: cover;          /* Crop image to fill area, keeping focus */
-  border-radius: 4px;         /* Slightly rounded image corners */
-  margin-bottom: 12px;        /* Space below image */
+  width: 100%;                  /* Image fills card width */
+  height: 220px;                /* Taller image for overlay effect */
+  object-fit: cover;            /* Crop image to fill area */
+  border-radius: 8px;           /* Rounded image corners */
+  display: block;
 }
 
-/* Center the h2 and h3 text in each card */
+/* Overlay for card text */
+section > div h2,
+section > div h3,
+section > div p {
+  position: absolute;           /* Position text over the image */
+  left: 0;
+  width: 100%;
+  padding: 0 10px;
+  color: #fff;                  /* White text for contrast */
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7); /* Shadow for readability */
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* Add faded background to card headers for better focus */
 section > div h2,
 section > div h3 {
-  text-align: center; /* Centers the heading text inside each card */
+  background: rgba(0, 0, 32, 0.4); /* Faded dark background */
+  border-radius: 4px;
+}
+
+section > div h2 {
+  top: 12px;                    /* Place year near top */
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+}
+
+section > div h3 {
+  top: 40px;                    /* Place title below year */
+  font-size: 1em;
+  text-align: center;
+}
+
+section > div p {
+  bottom: 12px;
+  font-size: 0.95em;
+  text-align: center;
+  background: rgba(0,0,0,0.4);
+  border-radius: 4px;
+  padding: 6px 10px;
+  opacity: 0; /* Hide the card description text */
+
+}
+
+/* Show the card description text when hovering over the card */
+section > div:hover p {
+  opacity: 1; /* Make the text fully visible */
+}
+
+/* Also show the text when the paragraph is focused (for accessibility) */
+section > div p:focus {
+  opacity: 1;
+}
+
+/* Make cards slightly larger when hovered or focused */
+section > div:hover,
+section > div:focus {
+  transform: scale(1.05);         /* Slightly increase card size */
+  z-index: 1;                     /* Bring hovered card above others */
+  transition: transform 0.2s;     /* Smooth scaling effect */
 }
 
 /* Responsive: Stack cards vertically on small screens */
