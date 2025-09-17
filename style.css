@@ -156,3 +156,12 @@ section > div:focus {
     scroll-snap-align: start;       /* Snap each card to the start */
   }
 }
+
+/* Style the <p> at the bottom of the body */
+body > p {
+  background-color: rgb(1, 1, 61); /* Same navy blue as header */
+  color: white;                    /* White text for contrast */
+  text-align: center;              /* Center the text */
+  padding: 10px 0;                 /* Add some space above and below */
+  margin: 0;                       /* Remove default margin */
+}
