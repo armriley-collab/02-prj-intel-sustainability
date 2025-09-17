@@ -4,7 +4,7 @@
 header img {
   display: block;           /* Makes the image take up its own line */
   margin: 0 auto;           /* Centers the image horizontally */
-  width: 20%;               /* Sets the image width */
+  width: 6%;               /* Sets the image width */
   height: auto;             /* Keeps the image's aspect ratio */
 }
 
@@ -26,17 +26,24 @@ header p {
   font-size: 1.2em; /* Slightly larger subheading text */
 }
 
-/* Timeline cards layout using flexbox */
+/* Timeline cards layout using flexbox and scroll snap */
 section {
-  display: flex;              /* Use flexbox for layout */
-  flex-direction: row;        /* Arrange cards in a row (horizontal) */
-  flex-wrap: wrap;            /* Allow cards to wrap to next line if needed */
-  justify-content: center;    /* Center cards horizontally */
-  gap: 16px;                  /* Space between cards */
-  margin: 24px 0;             /* Space above and below the timeline */
+  display: flex;
+  flex-wrap: nowrap;              /* Prevent wrapping for horizontal scroll */
+  flex-direction: row;            /* Horizontal layout */
+  justify-content: flex-start;    /* Align cards to the left */
+  gap: 16px;
+  margin: 24px 0;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  overflow-x: auto;               /* Enable horizontal scrolling */
+  scroll-snap-type: x mandatory;  /* Enable horizontal scroll snap */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
+  padding-bottom: 16px;           /* Space for scrollbar */
 }
 
-/* Each card styling */
+/* Each card uses scroll snap */
 section > div {
   background: none;             /* Remove card background */
   border-radius: 8px;
@@ -48,6 +55,7 @@ section > div {
   position: relative;           /* Needed for overlay positioning */
   overflow: hidden;             /* Hide overflow for rounded corners */
   transition: transform 0.2s;     /* Smooth scaling effect */
+  scroll-snap-align: start;       /* Snap each card to the start */
 }
 
 /* Make images inside cards fit nicely and stand out */
@@ -114,6 +122,14 @@ section > div p:focus {
   opacity: 1;
 }
 
+/* Hide h2 and h3 text on card hover or focus */
+section > div:hover h2,
+section > div:focus h2,
+section > div:hover h3,
+section > div:focus h3 {
+  opacity: 0;
+}
+
 /* Make cards slightly larger when hovered or focused */
 section > div:hover,
 section > div:focus {
@@ -122,14 +138,21 @@ section > div:focus {
   transition: transform 0.2s;     /* Smooth scaling effect */
 }
 
-/* Responsive: Stack cards vertically on small screens */
+/* Responsive: Stack cards vertically on small screens with vertical scroll snap */
 @media (max-width: 800px) {
   section {
-    flex-direction: column;   /* Stack cards vertically */
-    align-items: center;      /* Center cards */
+    flex-direction: column;         /* Stack cards vertically */
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: auto;               /* Enable vertical scrolling */
+    scroll-snap-type: y mandatory;  /* Enable vertical scroll snap */
+    height: 80vh;                   /* Set a height for vertical scrolling */
+    max-width: 100%;
+    padding-bottom: 0;
   }
   section > div {
-    width: 90%;               /* Cards take most of the screen width */
-    max-width: 350px;         /* But not too wide */
+    width: 90%;
+    max-width: 350px;
+    scroll-snap-align: start;       /* Snap each card to the start */
   }
 }
